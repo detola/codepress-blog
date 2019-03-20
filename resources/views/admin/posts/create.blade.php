@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('includes.session-message')
+
     <h1>Create Post</h1>
 
     @include('includes.form-errors')

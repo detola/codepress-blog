@@ -11,6 +11,8 @@
             <th>Title</th>
             <th>Author</th>
             <th>Category</th>
+            <th>Comments</th>
+            <th>Post Link</th>
             <th>Created</th>
             <th>Updated</th>
         </tr>
@@ -24,6 +26,8 @@
                     <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
                     <td>{{$post->user->name}}</td>
                     <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
+                    <td><a href="{{$post->comments}}" class="badge badge-success">View Comments <span class="badge badge-primary">{{count($post->comments)}}</span></a></td>
+                    <td><a href="{{route('post', $post->id)}}">View Post</a></td>
                     <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>{{$post->updated_at->diffForHumans()}}</td>
                 </tr>

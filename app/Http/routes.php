@@ -19,6 +19,11 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/post/{id}/', 'PostsController@post')->name('post');
+
+Route::get('/blog', 'PostsController@blog')->name('blog');
+
+
 Route::group(['middleware' => 'admin'], function()
 {
     Route::resource('/admin/users', 'AdminUsersController');
@@ -26,6 +31,15 @@ Route::group(['middleware' => 'admin'], function()
     Route::resource('/admin/posts', 'PostsController');
 
     Route::resource('/admin/categories', 'CategoriesController');
+
+    Route::resource('/admin/media', 'GalleriesController');
+
+
+    Route::resource('/admin/comments', 'CommentsController');
+
+    Route::resource('/admin/comment/replies', 'CommentRepliesController');
+
+
 
 });
 

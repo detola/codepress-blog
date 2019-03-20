@@ -13,4 +13,11 @@
   height: 150px;
   border-radius: 50%; }
 
+.gallery {
+  display: inline-block;
+  margin-top: 20px; }
+
+.media {
+  height: 100px; }
+
 /*# sourceMappingURL=app.css.map */

@@ -24,6 +24,7 @@ class PostsController extends Controller
         //
         $posts = Post::all();
 
+
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -35,9 +36,18 @@ class PostsController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
+
+        if($categories->count() == 0 )
+        {
+            Session::flash('info', 'You must some categories before attempting to create a post');
+
+            return redirect()->back();
+        }
+
         $category = Category::lists('name', 'id')->all();
 
-        return view('admin.posts.create', compact('category'));
+        return view('admin.posts.create', compact('category', 'categories'));
     }
 
     /**
@@ -50,6 +60,8 @@ class PostsController extends Controller
     {
         //
         $post = $request->all();
+
+        // $title = \str_slug($request->title, '-');
 
         $user = Auth::user();
 
@@ -83,6 +95,13 @@ class PostsController extends Controller
     public function show($id)
     {
         //
+        $post = Post::find($id);
+
+        $previous = Post::where('post_id', '<', $post->id)->max('post_id');
+
+        $next = Post::where('post_id', '>', $post->id)->min('post_id');
+
+        return View::make('posts.show')->with('previous', $previous)->with('next', $next);
     }
 
     /**
@@ -157,5 +176,18 @@ class PostsController extends Controller
         Session::flash('msg', 'Post has been deleted.');
 
         return redirect('/admin/posts');
+    }
+
+
+    public function post($id)
+    {
+        $post = Post::findBySlug($id);
+
+        return view('post', compact('post'));
+    }
+
+    public function blog()
+    {
+        return view('blog');
     }
 }

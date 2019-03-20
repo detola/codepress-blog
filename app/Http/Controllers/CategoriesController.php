@@ -36,7 +36,7 @@ class CategoriesController extends Controller
 
         Category::create($category);
 
-        Session::flash('success-msg', 'Category has been created.');
+        Session::flash('success', 'Category has been created.');
 
         return redirect('/admin/categories');
     }
@@ -78,7 +78,7 @@ class CategoriesController extends Controller
 
         $category->update($input);
 
-        Session::flash('success-msg', 'Category has been updated.');
+        Session::flash('success', 'Category has been updated.');
 
 
         return redirect('/admin/categories');

@@ -8,9 +8,11 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddPhotoIdToUsers' => $baseDir . '/database/migrations/2019_03_07_003857_add_photo_id_to_users.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2019_03_09_124532_create_categories_table.php',
+    'CreateCommentsTable' => $baseDir . '/database/migrations/2019_03_12_224853_create_comments_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePhotosTable' => $baseDir . '/database/migrations/2019_03_07_003441_create_photos_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2019_03_09_123344_create_posts_table.php',
+    'CreateRepliesTable' => $baseDir . '/database/migrations/2019_03_12_224920_create_replies_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2019_03_07_003524_create_roles_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
@@ -491,6 +493,7 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'RoleTableSeeder' => $baseDir . '/database/seeds/RoleTableSeeder.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',
@@ -529,4 +532,5 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
 );
