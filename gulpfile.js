@@ -31,6 +31,14 @@ elixir(function(mix) {
             'libs/frontend/style.css'
         ], 'public/css/front.css')
 
+        .styles([
+            '../vendors/iconfonts/mdi/css/materialdesignicons.min.css',
+            '../vendors/css/vendor.bundle.base.css',
+            '../vendors/css/vendor.bundle.addons.css',
+            'style.css'
+
+        ], 'public/css/admin.css')
+
         .scripts([
             'libs/bootstrap.js',
             'libs/jquery.js',
@@ -48,4 +56,13 @@ elixir(function(mix) {
             'libs/frontend/main.js'
 
         ], 'public/js/front.js')
+
+        .scripts([
+            '../vendors/js/vendor.bundle.base.js',
+            '../vendors/js/vendor.bundle.addons.js',
+            'off-canvas.js',
+            'misc.js',
+            'dashboard.js'
+
+        ], 'public/js/admin.js')
 });

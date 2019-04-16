@@ -24,7 +24,6 @@ class PostsController extends Controller
         //
         $posts = Post::all();
 
-
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -45,7 +44,7 @@ class PostsController extends Controller
             return redirect()->back();
         }
 
-        $category = Category::lists('name', 'id')->all();
+        $category = Category::pluck('name', 'id')->all();
 
         return view('admin.posts.create', compact('category', 'categories'));
     }
@@ -115,7 +114,7 @@ class PostsController extends Controller
         //
         $post = Post::findOrFail($id);
 
-        $categories = Category::lists('name', 'id')->all();
+        $categories = Category::pluck('name', 'id')->all();
 
          return view('admin.posts.edit', compact('post',  'categories'));
     }
@@ -179,11 +178,13 @@ class PostsController extends Controller
     }
 
 
-    public function post($id)
+    public function post($slug)
     {
-        $post = Post::findBySlug($id);
+        $post = Post::findBySlug($slug);
 
-        return view('post', compact('post'));
+        $categories = Category::all();
+
+        return view('post', compact('post', 'categories'));
     }
 
     public function blog()

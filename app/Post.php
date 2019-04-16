@@ -11,11 +11,19 @@ class Post extends Model
 {
     //
     use Sluggable;
-    // use SluggableScopeHelpers;
+    use SluggableScopeHelpers;
 
     use SoftDeletes;
 
-    protected $fillable = [ 'user_id', 'category_id', 'photo_id', 'title', 'body', 'slug'];
+    protected $fillable = [ 
+        'user_id', 
+        'category_id', 
+        'photo_id', 
+        'title', 
+        'body', 
+        'slug', 
+        'excerpt'
+    ];
 
     protected $dates = ['deleted_at'];
 

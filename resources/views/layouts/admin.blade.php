@@ -2,345 +2,387 @@
 <html lang="en">
 
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Codepress Dashboard</title>
+  <!-- plugins:css -->
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  {{-- <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css"> --}}
 
-    <title>Admin</title>
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+  <link href="{{asset('css/admin.css')}}" rel="stylesheet">
 
-    <link href="{{asset('css/libs.css')}}" rel="stylesheet">
+  {{-- <link rel="stylesheet" href="css/style.css"> --}}
 
-    <link href="{{asset('css/toastr.min.css')}}" rel="stylesheet">
+  <!-- endinject -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
+  <link rel="shortcut icon" href="images/favicon.png" />
 
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-
-
+  @yield('styles')
 </head>
 
-<body id="admin-page">
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.html">
+          <img src="images/logo.svg" alt="logo" />
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="index.html">
+          <img src="images/logo-mini.svg" alt="logo" />
+        </a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+          <li class="nav-item">
+            <a href="{{route('admin.users.create')}}" class="nav-link">User
+              <span class="badge badge-primary ml-1">New</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="{{route('admin.categories.index')}}" class="nav-link">
+              <i class="mdi mdi-elevation-rise"></i>Category</a>
+          </li>
+          <li class="nav-item">
+          <a href="/" class="nav-link">
+              <i class="mdi mdi-bookmark-plus-outline"></i>Homepage</a>
+          </li>
+        </ul>
 
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Home</a>
-            </div>
-            <!-- /.navbar-header -->
-
-
-
-            <ul class="nav navbar-top-links navbar-right">
-
-                <li>
-                    <a class="navbar-link" href="{{ route('blog') }}">Front page</a>
-                </li>
-
-
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>{{ Auth::user()->name }} <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-
-
-            </ul>
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{route('admin.users.index')}}">All Users</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{route('admin.users.create')}}">Create User</a>
-                                </li>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{route('admin.posts.index')}}">All Posts</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{route('admin.posts.create')}}">Create Post</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('admin.comments.index')}}">All Comments</a>
-                                </li>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-                        <li>
-                            <a href="{{route('admin.categories.index')}}"><i class="fa fa-wrench fa-fw"></i>Categories<span
-                                    class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{route('admin.categories.index')}}">All Categories</a>
-                                </li>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-                        <li>
-                            <a href="{{route('admin.media.index')}}"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{route('admin.media.index')}}">All Media</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{route('admin.media.create')}}">Upload Media</a>
-                                </li>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-
-
-
-
-
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Replies<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{route('admin.comment.replies.index')}}">All Replies</a>
-                                </li>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li class="active">
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a class="active" href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-
-
+        {{-- Items on the right --}}
+        <ul class="navbar-nav navbar-nav-right">   
+            
+            {{-- Notifications --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="mdi mdi-bell"></i>
+              <span class="count">4</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <a class="dropdown-item">
+                <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
+                </p>
+                <span class="badge badge-pill badge-warning float-right">View all</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="mdi mdi-alert-circle-outline mx-0"></i>
+                  </div>
                 </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-
-
-
-
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="/profile"><i class="fa fa-dashboard fa-fw"></i>Profile</a>
-                    </li>
-
-
-
-
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="">All Posts</a>
-                            </li>
-
-                            <li>
-                                <a href="">Create Post</a>
-                            </li>
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-
-
-
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-
-
-
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
-
-                    @yield('content')
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-medium text-dark">Application Error</h6>
+                  <p class="font-weight-light small-text">
+                    Just now
+                  </p>
                 </div>
-                <!-- /.col-lg-12 -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="mdi mdi-comment-text-outline mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-medium text-dark">Settings</h6>
+                  <p class="font-weight-light small-text">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="mdi mdi-email-outline mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-medium text-dark">New user registration</h6>
+                  <p class="font-weight-light small-text">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+          </li>
+          {{-- End Notifications --}}
+
+          {{-- Profile Bar --}}
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text">Hello, {{ Auth::user()->name }} !</span>
+            <img class="img-xs rounded-circle" src="{{ Auth::user()->photo? user()->photo->path : '/images/default.png'}}" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item p-0">
+                <div class="d-flex border-bottom">
+                  <div class="py-3 px-4 d-flex align-items-center justify-content-center">
+                    <i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i>
+                  </div>
+                  <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
+                    <i class="mdi mdi-account-outline mr-0 text-gray"></i>
+                  </div>
+                  <div class="py-3 px-4 d-flex align-items-center justify-content-center">
+                    <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
+                  </div>
+                </div>
+              </a>
+              <a class="dropdown-item mt-2">
+                Manage Accounts
+              </a>
+              <a class="dropdown-item">
+                Change Password
+              </a>
+              <a class="dropdown-item">
+                Check Inbox
+              </a>
+            <a href="{{url('/logout')}}" class="dropdown-item">
+                Sign Out
+              </a>
+            </div>
+          </li>
+          {{-- End Profile Bar --}}
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                  <img src="{{ Auth::user()->photo? user()->photo->path : '/images/default.png'}}" alt="profile image">
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name">{{Auth::user()->name}}</p>
+                  <div>
+                    <small class="designation text-muted">{{Auth::user()->role->name}}</small>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>
+              <a href="{{route('admin.posts.create')}}" class="btn btn-success btn-block">New Post<i class="mdi mdi-plus"></i></a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+          <!-- Users Link -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Users</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.users.index')}}">All Users</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('admin.users.create')}}">Create User</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Posts Links -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-toggle="collapse" href="#posts" aria-expanded="true" aria-controls="posts">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Posts</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="posts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('admin.posts.index')}}">All Posts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('admin.posts.create')}}">Create Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.comments.index')}}">All Comments</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Category Link -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Categories</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="categories">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('admin.categories.index')}}">All Categories</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Media Links -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#media" aria-expanded="false" aria-controls="media">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Media</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="media">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.media.index')}}">All Media</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('admin.media.create')}}">Upload Media</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+
+          {{-- <li class="nav-item">
+{{route('admin.media.index')}}
+            {{route('admin.media.create')}}
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Basic UI Elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <i class="menu-icon mdi mdi-backup-restore"></i>
+              <span class="menu-title">Form elements</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/charts/chartjs.html">
+              <i class="menu-icon mdi mdi-chart-line"></i>
+              <span class="menu-title">Charts</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/tables/basic-table.html">
+              <i class="menu-icon mdi mdi-table"></i>
+              <span class="menu-title">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/icons/font-awesome.html">
+              <i class="menu-icon mdi mdi-sticker"></i>
+              <span class="menu-title">Icons</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="menu-icon mdi mdi-restart"></i>
+              <span class="menu-title">User Pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/samples/login.html"> Login </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/samples/register.html"> Register </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/samples/error-404.html"> 404 </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
+                </li>
+              </ul>
+            </div>
+          </li> --}}
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+                @yield('content')
+                
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
+              <a href="https://github.com/detola/codepress" target="_blank">Codepress</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
+              <i class="mdi mdi-heart text-danger"></i>
+            </span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
 
-    </div>
-    <!-- /#wrapper -->
+  <!-- plugins:js -->
 
-    <!-- jQuery -->
-    <script src="{{asset('js/libs.js')}}"></script>
+  {{-- <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script> --}}
+  
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
 
-    <script src="{{asset('js/toastr.min.js')}}"></script>
+  {{-- <script src="js/off-canvas.js"></script>
+  <script src="js/misc.js"></script> --}}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
 
+  {{-- <script src="js/dashboard.js"></script> --}}
 
+  <!-- End custom js for this page-->
 
-    @yield('footer')
+  <script src="{{asset('js/admin.js')}}"></script>
 
-
-
-
+  @yield('scripts')
 
 </body>
 

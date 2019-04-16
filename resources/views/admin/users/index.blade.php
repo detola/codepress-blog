@@ -2,45 +2,91 @@
 
 @section('content')
 
-    @include('includes.session-message')
+@include('includes.session-message')
 
-    <h1>Users</h1>
+<!-- Partials -->
+<div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">All Users</h4>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>
+                      #
+                    </th>
+                    <th>
+                      User
+                    </th>
+                    <th>
+                      Full name
+                    </th>
+                    <th>
+                      Email
+                    </th>
+                    <th>
+                      Role
+                    </th>
+                    <th>
+                      Status
+                    </th>
+                    <th>
+                      Created
+                    </th>
+                    <th>
+                      Updated
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @if ($users)
 
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Avatar</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Active</th>
-            <th>Created</th>
-            <th>Updated</th>
-        </tr>
+                    @foreach ($users as $user)
 
-        @if($users)
+                    <tr>
+                            <td>
+                                {{$user->id}}
+                            </td>
+                            <td class="py-1">
+                              <img src="{{$user->photo ? $user->photo->path : '/images/default.png'}}" alt="image" />
+                            </td>
+                            <td>
+                                <a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a>
+                            </td>
+                            <td>
+                                {{$user->email}}
+                            </td>
+                            <td>
+                              {{$user->role->name}}
+                            </td>
+                            <td>
+                                @if ($user->is_active == 1)
+                                    <label class="badge badge-success">Active</label>                     
+                                @else
+                                    <label class="badge badge-warning">Not Active</label>
+                                @endif
+                            </td>
+                            <td>
+                                {{$user->created_at->diffForHumans()}}
+                            </td>
+                            <td>
+                                {{$user->updated_at->diffForHumans()}}
+                            </td>
+                          </tr>
+                        
+                    @endforeach
+                        
+                    @endif
+                  
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            @foreach($users as $user)
-
-                {{--{{dd($user)}}--}}
-
-                <tr>
-                    <td>{{$user->id}}</td>
-                    <td><img src="{{$user->photo ? $user->photo->path : '/images/default.png'}}" alt="" class="avatar"></td>
-                    <td><a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a></td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->role->name}}</td>
-                    <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
-                    <td>{{$user->created_at->diffForHumans()}}</td>
-                    <td>{{$user->updated_at->diffForHumans()}}</td>
-                </tr>
-
-            @endforeach
-
-        @endif
-
-    </table>
-
-
-
+<!-- End Partials -->
+    
 @endsection

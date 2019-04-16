@@ -110,6 +110,20 @@ class GalleriesController extends Controller
 
         $photo->delete();
 
-        return redirect('/admin/media/');
+        return redirect('/admin/media');
+    }
+
+    public function deleteMedia(Request $request)
+    {
+        // dd($request);
+        $medias = Photo::findOrFail($request->checkBoxArray);
+
+        // dd($request);
+
+        foreach($medias as $media)
+        {
+            $media->delete();
+        }
+        return redirect()->back();
     }
 }

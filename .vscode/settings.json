@@ -30,4 +30,5 @@
     // Enable parameter hints
     "editor.parameterHints.enabled": true,
     "phpcs.showSources": true,
+    "git.ignoreLimitWarning": true,
 }

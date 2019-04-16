@@ -2,51 +2,68 @@
 
 @section('content')
 
-    @include('includes.session-message')
+@include('includes.session-message')
 
-    <h1>Comments</h1>
+<!-- Partials -->
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Comments</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Author</th>
+                            <th>E-mail</th>
+                            <th>Body</th>
+                            <th>Post</th>
+                            <th>Replies</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-    <table class="table">
-        <tr>
-            <th>#</th>
-            <th>Author</th>
-            <th>E-mail</th>
-            <th>Body</th>
-            <th>Post</th>
-            <th>Replies</th>
-            <th>Status</th>
-            <th></th>
-        </tr>
+                        @if($comments)
 
-        @if($comments)
+                        @foreach($comments as $comment)
 
-            @foreach($comments as $comment)
+                        <tr>
+                            <td>{{$comment->id}}</td>
+                            <td>{{$comment->author}}</td>
+                            <td>{{$comment->email}}</td>
+                            <td>{{str_limit($comment->body, 15)}}</td>
+                            <td><a href="{{route('post', $comment->post->id)}}" class="badge badge-info">View Post</a>
+                            <td><a href="{{route('admin.comment.replies.index', $comment->id)}}">View Replies</a></td>
+                            <td></td>
+                            <td>
+                                {!! Form::open(['method'=>'DELETE', 'action'=> ['CommentsController@destroy',
+                                $comment->id]]) !!}
 
-                <tr>
-                    <td>{{$comment->id}}</td>
-                    <td>{{$comment->author}}</td>
-                    <td>{{$comment->email}}</td>
-                    <td>{{str_limit($comment->body, 10)}}</td>
-                    <td><a href="{{route('post', $comment->post->id)}}" class="badge badge-info">View Post</a>
-                    <td><a href="{{route('admin.comment.replies.index', $comment->id)}}">View Replies</a></td>
-                    <td></td>
-                    <td>
-                        {!! Form::open(['method'=>'DELETE', 'action'=> ['CommentsController@destroy', $comment->id]]) !!}
+                                <div class="form-group">
+                                    {!! Form::submit('Delete Comment', ['class'=>'btn btn-danger']) !!}
+                                </div>
 
-                            <div class="form-group">
-                                {!! Form::submit('Delete Comment', ['class'=>'btn btn-danger']) !!}
-                            </div>
+                                {!! Form::close() !!}
 
-                        {!! Form::close() !!}
+                            </td>
+                        </tr>
 
-                    </td>
-                </tr>
+                        @endforeach
 
-            @endforeach
+                        @else
+                        {{'No Comments'}}
 
-        @endif
+                        @endif
 
-    </table>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @endsection

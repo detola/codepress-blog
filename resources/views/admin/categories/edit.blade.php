@@ -9,17 +9,16 @@
         {!! Form::text('name', null, ['class'=>'form-control']) !!}
     </div>
 
-    <div class="form-group">
-        {!! Form::submit('Update Category', ['class'=>'btn btn-primary']) !!}
-    </div>
+    <div class="row form-group">
+            {!! Form::submit('Update Category', ['class'=>'btn btn-success mr-2']) !!}
 
-    {!! Form::close() !!}
 
-    {!! Form::open(['method'=>'DELETE', 'action'=> ['CategoriesController@destroy', $category->id]]) !!}
+            {!! Form::close() !!}
 
-        <div class="form-group">
+            {!! Form::open(['method'=>'DELETE', 'action'=> ['CategoriesController@destroy', $category->id]]) !!}
+
             {!! Form::submit('Delete Category', ['class'=>'btn btn-danger']) !!}
-        </div>
 
-    {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
 @endsection
