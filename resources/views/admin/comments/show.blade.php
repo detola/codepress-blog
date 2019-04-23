@@ -4,35 +4,35 @@
 
 @include('includes.session-message')
 
+
 <!-- Partials -->
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Comments</h4>
+            <h4 class="card-title">{{$posts->title}}'s Comments</h4>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Body</th>
                             <th>Author</th>
                             <th>E-mail</th>
-                            <th>Body</th>
                             <th>Post</th>
-                            <th>Replies</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @if($comments)
+                        @if(count($posts->comments) > 0)
 
-                        @foreach($comments as $comment)
+                        @foreach($posts->comments as $comment)
 
                         <tr>
                             <td>{{$comment->id}}</td>
+                            <td>{{str_limit($comment->body, 30)}}</td>
                             <td>{{$comment->author}}</td>
                             <td>{{$comment->email}}</td>
-                            <td>{{str_limit($comment->body, 15)}}</td>
                             <td><a href="{{route('post', $comment->post->id)}}" class="badge badge-info">View Post</a>
                             <td><a href="{{route('admin.comment.replies.index', $comment->id)}}">View Replies</a></td>
                             <td>

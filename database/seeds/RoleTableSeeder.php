@@ -15,5 +15,10 @@ class RoleTableSeeder extends Seeder
         App\Role::create([
             'name' => 'administrator'
         ]);
+
+        App\Role::create([
+            'name' => 'subscriber'
+        ]);
+
     }
 }

@@ -86,24 +86,6 @@ class PostsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        $post = Post::find($id);
-
-        $previous = Post::where('post_id', '<', $post->id)->max('post_id');
-
-        $next = Post::where('post_id', '>', $post->id)->min('post_id');
-
-        return View::make('posts.show')->with('previous', $previous)->with('next', $next);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

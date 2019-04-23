@@ -36,7 +36,7 @@
                             </td>
                             <td>{{$post->user->name}}</td>
                             <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
-                            <td><a href="{{$post->comments}}" class="badge badge-info">View Comments <span
+                            <td><a href="{{route('admin.comments.show', $post->id)}}" class="badge badge-info">View Comments <span
                                         class="badge badge-danger">{{count($post->comments)}}</span></a></td>
                             <td><a href="{{route('post', $post->slug)}}">View Post</a></td>
                             <td>{{$post->created_at->diffForHumans()}}</td>

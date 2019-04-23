@@ -68,7 +68,7 @@ class CommentRepliesController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.comment.replies.show', compact('comments', 'replies'));
     }
 
     /**

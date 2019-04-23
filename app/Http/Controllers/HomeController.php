@@ -41,10 +41,6 @@ class HomeController extends Controller
 
         $banners = Post::orderBy('created_at', 'desc')->skip(1)->take(2)->get();
 
-        //$hottest = Post::withCount('comments')->orderBy('post_id', 'desc')->get();
-
-
-
         return view('welcome', compact('users', 'posts', 'categories', 'comments', 'recents', 'banners'));
 
     }

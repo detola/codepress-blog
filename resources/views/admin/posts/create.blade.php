@@ -45,10 +45,9 @@
 
             <div class="form-group">
                 {!! Form::label('body', 'Body') !!}
-                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>2, 'placeholder'=>'Post body...' ])
+                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3, 'placeholder'=>'Post body...' ])
                 !!}
             </div>
-
 
 
             {!! Form::submit('Create Post', ['class'=>'btn btn-success mr-2']) !!}
@@ -58,6 +57,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

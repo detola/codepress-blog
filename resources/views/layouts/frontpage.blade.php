@@ -109,7 +109,7 @@
             <div class="col-md-6 col-md-pull-6">
                 <div class="footer-copyright">
                     Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                    All rights reserved | This project is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                     | This project is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
                     <a href="https://github.com/detola?tab=repositories" target="_blank">Detola</a>
                 </div>
             </div>

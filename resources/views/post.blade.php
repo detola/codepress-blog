@@ -2,24 +2,25 @@
 
 @section('content')
 
-    <div id="post-header" class="page-header">
-        <div class="page-header-bg" style="background-image: url('{{$post->photo ? $post->photo->path : null}}');" data-stellar-background-ratio="0.5"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="post-category">
-                        <a href="category.html">{{$post->category ? $post->category->name : 'Uncategorized'}}</a>
-                    </div>
-                    <h1>{{$post->title}}</h1>
-                    <ul class="post-meta">
-                        <li><a href="author.html">{{$post->user->name}}</a></li>
-                        <li>{{$post->created_at->diffForHumans()}}</li>
-                    <li><i class="fa fa-comments"></i> {{count($post->comments)}}</li>
-                    </ul>
+<div id="post-header" class="page-header">
+    <div class="page-header-bg" style="background-image: url('{{$post->photo ? $post->photo->path : null}}');"
+        data-stellar-background-ratio="0.5"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="post-category">
+                    <a href="category.html">{{$post->category ? $post->category->name : 'Uncategorized'}}</a>
                 </div>
+                <h1>{{$post->title}}</h1>
+                <ul class="post-meta">
+                    <li><a href="author.html">{{$post->user->name}}</a></li>
+                    <li>{{$post->created_at->diffForHumans()}}</li>
+                    <li><i class="fa fa-comments"></i> {{count($post->comments)}}</li>
+                </ul>
             </div>
         </div>
     </div>
+</div>
 
 <!-- section -->
 <div class="section">
@@ -44,21 +45,15 @@
                 </div>
                 <!-- /post content -->
 
-
-
                 <div class="section-row">
-
                     <!-- Comment Form -->
                     <div class="section-row">
                         <div class="section-title">
                             <h3 class="title">Leave a reply</h3>
                         </div>
-
-                        {!! Form::open(['method'=>'POST', 'action'=> 'CommentsController@store', 'class'=>'post-reply']) !!}
-
+                        {!! Form::open(['method'=>'POST', 'action'=> 'CommentsController@store', 'class'=>'post-reply'])
+                        !!}
                         <input type="hidden" name="post_id" value="{{$post->id}}">
-
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -69,9 +64,7 @@
                                 {!! Form::submit('Submit', ['class'=>'primary-button']) !!}
                             </div>
                         </div>
-
                         {!! Form::close() !!}
-
                     </div>
                     <!-- /Comment Form -->
 
@@ -88,7 +81,8 @@
                         <!-- comment -->
                         <div class="media">
                             <div class="media-left">
-                                <img class="media-object" src="{{$comment->photo ? $comment->photo->path : '/images/default.png'}}" alt="">
+                                <img class="media-object"
+                                    src="{{$comment->photo ? $comment->photo->path : '/images/default.png'}}" alt="">
                             </div>
                             <div class="media-body">
                                 <div class="media-heading">
@@ -97,42 +91,34 @@
                                 </div>
                                 <p>{{$comment->body}}</p>
 
-
-
-
-
-
                                 <!-- Replies -->
                                 @if($comment->replies)
                                 <div class="media media-author">
                                     @foreach($comment->replies as $reply)
-                                        <div class="post-comments">
-                                    <div class="media-left">
-                                        <img class="media-object" src="{{$reply->photo ? $reply->photo->path : '/images/default.png'}}" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="media-heading">
-                                            <h4>{{$reply->author}}</h4>
-                                            <span class="time">{{$reply->created_at->diffForHumans()}}</span>
+                                    <div class="post-comments">
+                                        <div class="media-left">
+                                            <img class="media-object"
+                                                src="{{$reply->photo ? $reply->photo->path : '/images/default.png'}}"
+                                                alt="">
                                         </div>
-                                        <p>{{$reply->body}}</p>
-
-
-
-
+                                        <div class="media-body">
+                                            <div class="media-heading">
+                                                <h4>{{$reply->author}}</h4>
+                                                <span class="time">{{$reply->created_at->diffForHumans()}}</span>
+                                            </div>
+                                            <p>{{$reply->body}}</p>
+                                        </div>
                                     </div>
-                                                </div>
                                     @endforeach
 
-                                        {!! Form::open(['method'=>'POST', 'action'=> 'CommentRepliesController@store', 'class'=>'post-reply']) !!}
-
-                                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
-
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    {!! Form::text('body', null, ['class'=>'input', 'placeholder'=>'Reply']) !!}
+                                    {!! Form::open(['method'=>'POST', 'action'=> 'CommentRepliesController@store',
+                                    'class'=>'post-reply']) !!}
+                                    <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {!! Form::text('body', null, ['class'=>'input', 'placeholder'=>'Reply'])
+                                                !!}
                                             </div>
                                             <div class="col-md-12">
                                                 {!! Form::submit('Reply', ['class'=>'reply']) !!}
@@ -143,15 +129,11 @@
                                     </div>
                                 </div>
 
-                            @endif
-
-
+                                @endif
                                 <!-- /comment -->
                             </div>
                         </div>
                         <!-- /comment -->
-
-
                     </div>
                     @endforeach
                 </div>
@@ -159,8 +141,6 @@
                 <!-- /post comments -->
 
             </div>
-
-
 
             <div class="col-md-4">
                 <!-- ad widget -->
@@ -170,7 +150,6 @@
                     </a>
                 </div>
                 <!-- /ad widget -->
-
 
                 <!-- category widget -->
                 <div class="aside-widget">
@@ -184,11 +163,10 @@
                         </ul>
                     </div>
                     @endforeach
-                    
+
                 </div>
                 <!-- /category widget -->
 
-               
                 <!-- Ad widget -->
                 <div class="aside-widget text-center">
                     <a href="#" style="display: inline-block;margin: auto;">

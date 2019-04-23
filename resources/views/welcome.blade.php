@@ -11,11 +11,11 @@
         <div id="hot-post" class="row hot-post">
             <div class="col-md-8 hot-post-left">
                 <!-- post -->
-                
+
                 @foreach ($recents as $recent)
 
                 <div class="post post-thumb">
-                    <a class="post-img" href="{{route('post', $recent->slug)}}"><img src="{{$recent->photo->path}}" alt=""></a>
+                    <a class="post-img" href="{{route('post', $recent->slug)}}"><img src="{{$recent->photo ? $recent->photo->path : null}}" alt=""></a>
                     <div class="post-body">
                         <div class="post-category">
                             <a href="category.html">{{$recent->category->name}}</a>
@@ -36,7 +36,7 @@
                 @foreach ($banners as $banner)
 
                 <div class="post post-thumb">
-                    <a class="post-img" href="{{route('post', $banner->slug)}}"><img src="{{$banner->photo->path}}" alt=""></a>
+                    <a class="post-img" href="{{route('post', $banner->slug)}}"><img src="{{$banner->photo ? $banner->photo->path : null}}" alt=""></a>
                     <div class="post-body">
                         <div class="post-category">
                             <a href="{{route('post', $banner->slug)}}">{{$banner->category->name}}</a>
@@ -68,7 +68,7 @@
                 @foreach ($posts as $post)
                 <!-- post -->
                 <div class="post post-row">
-                    <a class="post-img" href="{{route('post', $post->slug)}}"><img src="{{$post->photo->path}}" alt=""></a>
+                    <a class="post-img" href="{{route('post', $post->slug)}}"><img src="{{$post->photo ? $post->photo->path : null}}" alt=""></a>
                     <div class="post-body">
                         <div class="post-category">
                             <a href="{{route('post', $post->slug)}}">{{$post->category->name}}</a>
