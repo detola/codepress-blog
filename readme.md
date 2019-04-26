@@ -1,26 +1,35 @@
-# Laravel PHP Framework
+# Blog with Laravel
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+A simple blog 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+# Feature
+This software has following features:
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+* CRUD User
+* CRUD POST
+* CRUD Category
+* CRUD Gallery
+* Admin Area to manage all features
+* Front Page for Visitors
 
-## Official Documentation
+Installation
+============
+* Run php   ```composer.phar install```   for developer environment to install Laravel packages
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+* Create ```.env file``` from ```.env.example``` and generate ```APP_KEY``` using ```php artisan key:generate```
 
-## Contributing
+*	Set the database connection configuration and APP_ENV according to your application environment (e.g. local, production) in ```.env``` file
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+*	To create a ```User```, go to the ```database\seeds\UsersTableSeeder.php``` and change the ```name```, the ```email``` and the ```password``` settings to your likings. Leave the other settings (role_id, is_active) unchanged!
 
-## Security Vulnerabilities
+*	To create the tables, run ```php artisan migrate```.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+*	To seed the tables with fake data, use php artisan ```db:seed```.
+
+*	If you want to run the migration and the seeding together, use ```php artisan migrate:refresh --seed```
+
+* Login at ```codepress.test\login``` using your Master account credentials OR Register at ```codepress.test\register```
+
 
 ## License
 
